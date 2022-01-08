@@ -7,12 +7,12 @@ for i,v in pairs(CoreGui.GetDescendants(CoreGui)) do
         end
 end
 
-local wallyisani;
-wallyisani = hookfunction(game:GetService("ContentProvider").PreloadAsync, function(self, ...)
+local hello;
+hello = hookfunction(game:GetService("ContentProvider").PreloadAsync, function(self, ...)
         local Args = {...}
         if table.find(Args[1], CoreGui) and not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) then
             Args[1] = tbl
-            return wallyisani(self, unpack(Args))
+            return hello(self, unpack(Args))
         end
     return wallyisani(self, ...)
 end)
