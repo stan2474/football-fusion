@@ -10,18 +10,26 @@ end
 local hello;
 hello = hookfunction(game:GetService("ContentProvider").PreloadAsync, function(self, ...)
         local Args = {...}
-        if table.find(Args[1], CoreGui) and not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) then
+        if self == game:GetService("ContentProvider").PreloadAsync and not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) then
             Args[1] = tbl
             return hello(self, unpack(Args))
         end
     return hello(self, ...)
 end)
+
+local function football(ncm)
+     if ncm == "PreloadAsync" or ncm == "preloadAsync" then
+          return true
+     end
+     return false
+end
+
 local __namecall;
 
 __namecall = hookmetamethod(game, "__namecall", function(Self, ...)
     local Args = {...}
     local NamecallMethod = getnamecallmethod()
-    if not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) and Self == game.GetService(game, "ContentProvider") and string.lower(NamecallMethod) == "preloadasync" then
+    if not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) and Self == game.GetService(game, "ContentProvider") and football(NamecallMethod) then
         Args[1] = tbl
         return __namecall(Self, unpack(Args))
     end
