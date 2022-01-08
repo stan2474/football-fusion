@@ -14,7 +14,7 @@ hello = hookfunction(game:GetService("ContentProvider").PreloadAsync, function(s
             Args[1] = tbl
             return hello(self, unpack(Args))
         end
-    return wallyisani(self, ...)
+    return hello(self, ...)
 end)
 local __namecall;
 
