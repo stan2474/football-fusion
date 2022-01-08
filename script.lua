@@ -10,7 +10,7 @@ end
 local hello;
 hello = hookfunction(game:GetService("ContentProvider").PreloadAsync, function(self, ...)
         local Args = {...}
-        if self == game:GetService("ContentProvider").PreloadAsync and not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) then
+        if not checkcaller() and type(Args[1]) == "table" and table.find(Args[1], CoreGui) then
             Args[1] = tbl
             return hello(self, unpack(Args))
         end
